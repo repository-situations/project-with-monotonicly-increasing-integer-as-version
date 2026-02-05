@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2ce403ab6d2bc18f04bf5231ce887e6",
+    "content-hash": "36c7195fed9e8985d70397e58ffc7084",
     "packages": [
         {
             "name": "clue/framework-x",
@@ -907,7 +907,9 @@
     "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
+    "platform": {
+        "php": "^8.5"
+    },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
 }
