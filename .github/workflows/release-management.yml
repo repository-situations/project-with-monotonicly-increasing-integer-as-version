@@ -23,21 +23,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Check release label
-        id: check-label
-        run: |
-          LABELS="${{ github.event.pull_request.labels.*.name }}"
-          CHECK_VAL="${{
-            contains(github.event.pull_request.labels.*.name, 'release')
-          }}"
-          if [[ "$CHECK_VAL" == "true" ]]; then
-            echo "is_release=true" >> $GITHUB_OUTPUT
-          else
-            echo "is_release=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Validate release PR
-        if: steps.check-label.outputs.is_release == 'true'
+        if: contains(github.event.pull_request.labels.*.name, 'release')
         run: |
           echo "Validating release pull request..."
           echo "PR Number: ${{ github.event.pull_request.number }}"
