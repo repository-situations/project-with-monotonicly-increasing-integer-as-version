@@ -16,39 +16,12 @@ permissions:
   pull-requests: write
   packages: write
 jobs:
-  validate-release:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Validate release PR
-        if: contains(github.event.pull_request.labels.*.name, 'release')
-        run: |
-          echo "Validating release pull request..."
-          echo "PR Number: ${{ github.event.pull_request.number }}"
-          echo "PR Title: ${{ github.event.pull_request.title }}"
-
-  publish-release:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'milestone' && github.event.action == 'closed'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Get milestone info
-        id: milestone
-        run: |
-          TITLE="${{ github.event.milestone.title }}"
-          NUMBER="${{ github.event.milestone.number }}"
-          echo "milestone_title=$TITLE" >> $GITHUB_OUTPUT
-          echo "milestone_number=$NUMBER" >> $GITHUB_OUTPUT
-
-      - name: Create release
-        run: |
-          TITLE="${{ steps.milestone.outputs.milestone_title }}"
-          NUMBER="${{ steps.milestone.outputs.milestone_number }}"
-          echo "Creating release for milestone: $TITLE"
-          echo "Milestone number: $NUMBER"
-          # Additional release steps would go here
+  release-managment:
+    name: Release Management
+    secrets: inherit
+    uses: >-
+      WyriHaximus/github-workflows/.github/workflows/project-release-management.yaml@main
+    with:
+      milestone: ${{ github.event.milestone.title }}
+      description: ${{ github.event.milestone.description }}
+      ociRetag: false
