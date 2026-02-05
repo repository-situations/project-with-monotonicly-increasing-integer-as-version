@@ -24,6 +24,4 @@ jobs:
     with:
       milestone: ${{ github.event.milestone.title }}
       description: ${{ github.event.milestone.description }}
-      runsOnChaos: chaos
-      runsOnOrder: queue
       ociRetag: false
