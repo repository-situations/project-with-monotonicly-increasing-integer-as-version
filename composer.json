@@ -1,0 +1,13 @@
+{
+    "name": "repository-situations/project-with-monotonicly-increasing-integer-as-version",
+    "description": "Project with Monotonicly increasing Integer as Version",
+    "type": "project",
+    "require": {
+        "clue/framework-x": "^0.17"
+    },
+    "require-dev": {},
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {}
+    }
+}
