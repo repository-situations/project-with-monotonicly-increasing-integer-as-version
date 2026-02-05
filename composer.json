@@ -3,6 +3,7 @@
     "description": "Project with Monotonicly increasing Integer as Version",
     "type": "project",
     "require": {
+        "php": "^8.5",
         "clue/framework-x": "^0.17"
     },
     "require-dev": {},
