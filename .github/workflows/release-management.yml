@@ -16,7 +16,7 @@ permissions:
   pull-requests: write
   packages: write
 jobs:
-  release-managment:
+  release-management:
     name: Release Management
     secrets: inherit
     uses: >-
@@ -24,4 +24,6 @@ jobs:
     with:
       milestone: ${{ github.event.milestone.title }}
       description: ${{ github.event.milestone.description }}
+      runsOnChaos: chaos
+      runsOnOrder: queue
       ociRetag: false
